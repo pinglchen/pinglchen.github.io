@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen">
+
+
+    <meta name="subtitle" content="nothing">
+
+
+    <meta name="description" content="No one is coming.">
+
+
+    <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+
+
+<title>17.电话号码的字母组合 | Chen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">CHEN&#39;S BLOG</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">CHEN&#39;S BLOG</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">17.电话号码的字母组合</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">July 3, 2021&nbsp;&nbsp;2:06:10</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number">https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number</a> </p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>给定一个仅包含数字  <code>2-9</code>  的字符串，返回所有它能表示的字母组合。答案可以按 <strong>任意顺序</strong> 返回。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<img src="https://assets.leetcode-cn.com/aliyun-lc-upload/original_images/17_telephone_keypad.png" style="width: 200px;" />
+
+<p> </p>
+<span id="more"></span>
+<p> <strong>示例 1：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：digits = &quot;23&quot;</span><br><span class="line">输出：[&quot;ad&quot;,&quot;ae&quot;,&quot;af&quot;,&quot;bd&quot;,&quot;be&quot;,&quot;bf&quot;,&quot;cd&quot;,&quot;ce&quot;,&quot;cf&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 2：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：digits = &quot;&quot;</span><br><span class="line">输出：[]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 3：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：digits = &quot;2&quot;</span><br><span class="line">输出：[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p> <strong>提示：</strong> </p>
+<ul>
+<li> <code>0 &lt;= digits.length &lt;= 4</code> </li>
+<li><code>digits[i]</code> 是范围 <code>[&#39;2&#39;, &#39;9&#39;]</code> 的一个数字。</li>
+</ul>
+<p><strong>标签</strong><br><code>哈希表</code> <code>字符串</code> <code>回溯</code> </p>
+<hr>
+<h2 id="回溯-哈希"><a href="#回溯-哈希" class="headerlink" title="回溯+哈希"></a>回溯+哈希</h2><img src=https://pic.leetcode-cn.com/38567dcbb6401d88946ca974aacffb5ab27cb1ad54056f02b59016c0cc68b40f-file_1562774451350>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">letterCombinations</span><span class="params">(string digits)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        string ansStr;</span><br><span class="line">        unordered_map&lt;<span class="keyword">char</span>,string&gt; phoneMap&#123;</span><br><span class="line">            &#123;<span class="string">&#x27;2&#x27;</span>,<span class="string">&quot;abc&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;3&#x27;</span>,<span class="string">&quot;def&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;4&#x27;</span>,<span class="string">&quot;ghi&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;5&#x27;</span>,<span class="string">&quot;jkl&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;6&#x27;</span>,<span class="string">&quot;mno&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;7&#x27;</span>,<span class="string">&quot;pqrs&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;8&#x27;</span>,<span class="string">&quot;tuv&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&#x27;9&#x27;</span>,<span class="string">&quot;wxyz&quot;</span>&#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">if</span>(digits.<span class="built_in">empty</span>()) <span class="keyword">return</span> ans;</span><br><span class="line">        <span class="built_in">back</span>(phoneMap,ans,ansStr,digits,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">back</span><span class="params">(<span class="keyword">const</span> unordered_map&lt;<span class="keyword">char</span>,string&gt; &amp;phoneMap,vector&lt;string&gt; &amp;ans,string &amp;ansStr,<span class="keyword">const</span> string &amp;digits,<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index==digits.<span class="built_in">length</span>()) &#123;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(ansStr);</span><br><span class="line">            <span class="keyword">return</span> ;<span class="comment">//</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            string letters=phoneMap.<span class="built_in">at</span>(digits[index]);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;letter:letters)&#123;</span><br><span class="line">                ansStr.<span class="built_in">push_back</span>(letter);</span><br><span class="line">                <span class="built_in">back</span>(phoneMap,ans,ansStr,digits,index+<span class="number">1</span>);</span><br><span class="line">                ansStr.<span class="built_in">pop_back</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
+<li><p>时间复杂度：<code>O(3^m × 4^n)</code>，其中 <code>m</code> 是输入中对应 <code>3</code> 个字母的数字个数（包括数字 2、3、4、5、6、8），<code>n</code> 是输入中对应 <code>4</code> 个字母的数字个数（包括数字 7、9）,<code>m+n</code> 是输入数字的总个数。当输入包含 <code>m</code> 个对应 <code>3</code> 个字母的数字和 <code>n</code> 个对应 <code>4</code> 个字母的数字时，不同的字母组合一共有 <code>(3^m × 4^n)</code>种，需要遍历每一种字母组合。</p>
+</li>
+<li><p>空间复杂度：<code>O(m+n)</code>。除了返回值以外，空间复杂度主要取决于哈希表以及回溯过程中的递归调用层数，哈希表的大小与输入无关，可以看成常数，递归调用层数最大为 <code>m+n</code>。</p>
+</li>
+</ul>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/solution/dian-hua-hao-ma-de-zi-mu-zu-he-by-leetcode-solutio/">LeetCode-Solution</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>The master has failed more times than the beginner has tried.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/leetcode/"># leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/07/03/18-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C/">18.四数之和</a>
+            
+            
+            <a class="next" rel="next" href="/2021/07/03/16-%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C/">16.最接近的三数之和</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/pinglchen" target="_blank">Chic-Chen</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen">
+
+
+    <meta name="subtitle" content="nothing">
+
+
+    <meta name="description" content="No one is coming.">
+
+
+    <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+
+
+<title>68.文本左右对齐 | Chen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">CHEN&#39;S BLOG</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">CHEN&#39;S BLOG</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">68.文本左右对齐</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 3, 2021&nbsp;&nbsp;22:16:31</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/text-justification">https://leetcode-cn.com/problems/text-justification</a> </p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>给定一个单词数组和一个长度 <em>maxWidth</em> ，重新排版单词，使其成为每行恰好有 <em>maxWidth</em> 个字符，且左右两端对齐的文本。</p>
+<p>你应该使用“贪心算法”来放置给定的单词；也就是说，尽可能多地往每行中放置单词。必要时可用空格 <code>&#39;; &#39;;</code> 填充，使得每行恰好有 <em>maxWidth</em> 个字符。</p>
+<p>要求尽可能均匀分配单词间的空格数量。如果某一行单词间的空格不能均匀分配，则左侧放置的空格数要多于右侧的空格数。</p>
+<p>文本的最后一行应为左对齐，且单词之间不插入 <strong>额外的</strong> 空格。</p>
+<span id="more"></span>
+<p> <strong>说明:</strong> </p>
+<ul>
+<li>单词是指由非空格字符组成的字符序列。</li>
+<li>每个单词的长度大于 0，小于等于 <em>maxWidth</em> 。</li>
+<li>输入单词数组 <code>words</code> 至少包含一个单词。</li>
+</ul>
+<p> <strong>示例:</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">words = [&quot;This&quot;, &quot;is&quot;, &quot;an&quot;, &quot;example&quot;, &quot;of&quot;, &quot;text&quot;, &quot;justification.&quot;]</span><br><span class="line">maxWidth = 16</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">   &quot;This    is    an&quot;,</span><br><span class="line">   &quot;example  of text&quot;,</span><br><span class="line">   &quot;justification.  &quot;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 2:</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">words = [&quot;What&quot;,&quot;must&quot;,&quot;be&quot;,&quot;acknowledgment&quot;,&quot;shall&quot;,&quot;be&quot;]</span><br><span class="line">maxWidth = 16</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  &quot;What   must   be&quot;,</span><br><span class="line">  &quot;acknowledgment  &quot;,</span><br><span class="line">  &quot;shall be        &quot;</span><br><span class="line">]</span><br><span class="line">解释: 注意最后一行的格式应为 &quot;shall be    &quot; 而不是 &quot;shall     be&quot;,</span><br><span class="line">     因为最后一行应为左对齐，而不是左右两端对齐。       </span><br><span class="line">     第二行同样为左对齐，这是因为这行只包含一个单词。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 3:</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line">words = [&quot;Science&quot;,&quot;is&quot;,&quot;what&quot;,&quot;we&quot;,&quot;understand&quot;,&quot;well&quot;,&quot;enough&quot;,&quot;to&quot;,&quot;explain&quot;,</span><br><span class="line">         &quot;to&quot;,&quot;a&quot;,&quot;computer.&quot;,&quot;Art&quot;,&quot;is&quot;,&quot;everything&quot;,&quot;else&quot;,&quot;we&quot;,&quot;do&quot;]</span><br><span class="line">maxWidth = 20</span><br><span class="line">输出:</span><br><span class="line">[</span><br><span class="line">  &quot;Science  is  what we&quot;,</span><br><span class="line">  &quot;understand      well&quot;,</span><br><span class="line">  &quot;enough to explain to&quot;,</span><br><span class="line">  &quot;a  computer.  Art is&quot;,</span><br><span class="line">  &quot;everything  else  we&quot;,</span><br><span class="line">  &quot;do                  &quot;</span><br><span class="line">]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>标签</strong><br><code>字符串</code> <code>模拟</code> </p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">fillWords</span><span class="params">(vector&lt;string&gt;&amp; words, <span class="keyword">int</span> bg, <span class="keyword">int</span> ed, <span class="keyword">int</span> maxWidth, <span class="keyword">bool</span> lastLine = <span class="literal">false</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> wordCount = ed - bg + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> spaceCount = maxWidth + <span class="number">1</span> - wordCount;  <span class="comment">// 除去每个单词尾部空格， + 1 是最后一个单词的尾部空格的特殊处理</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = bg; i &lt;= ed; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            spaceCount -= words[i].<span class="built_in">size</span>();  <span class="comment">// 除去所有单词的长度</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> spaceSuffix = <span class="number">1</span>;    <span class="comment">// 词尾空格</span></span><br><span class="line">        <span class="keyword">int</span> spaceAvg = (wordCount == <span class="number">1</span>) ? <span class="number">1</span> : spaceCount / (wordCount - <span class="number">1</span>);     <span class="comment">// 额外空格的平均值</span></span><br><span class="line">        <span class="keyword">int</span> spaceExtra = (wordCount == <span class="number">1</span>) ? <span class="number">0</span> : spaceCount % (wordCount - <span class="number">1</span>);   <span class="comment">// 额外空格的余数</span></span><br><span class="line"></span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = bg; i &lt; ed; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ans += words[i];    <span class="comment">// 填入单词</span></span><br><span class="line">            <span class="keyword">if</span> (lastLine)   <span class="comment">// 特殊处理最后一行</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//fill_n(back_inserter(ans), 1, &#x27; &#x27;);</span></span><br><span class="line">                ans+=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//fill_n(back_inserter(ans), spaceSuffix + spaceAvg + ((i - bg) &lt; spaceExtra), &#x27; &#x27;);  // 根据计算结果补上空格</span></span><br><span class="line">            <span class="keyword">int</span> num=spaceSuffix + spaceAvg + ((i - bg) &lt; spaceExtra);</span><br><span class="line">            <span class="keyword">while</span>(num--) ans+=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ans += words[ed];   <span class="comment">// 填入最后一个单词</span></span><br><span class="line">        <span class="comment">//fill_n(back_inserter(ans), maxWidth - ans.size(), &#x27; &#x27;); // 补上这一行最后的空格</span></span><br><span class="line">        <span class="keyword">int</span> num=maxWidth - ans.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">while</span>(num--) ans+=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">fullJustify</span><span class="params">(vector&lt;string&gt;&amp; words, <span class="keyword">int</span> maxWidth)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        vector&lt;string&gt; ans;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> bg = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; words.<span class="built_in">size</span>(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt += words[i].<span class="built_in">size</span>() + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">1</span> == words.<span class="built_in">size</span>() || cnt + words[i + <span class="number">1</span>].<span class="built_in">size</span>() &gt; maxWidth)</span><br><span class="line">            &#123;   <span class="comment">// 如果是最后一个单词，或者加上下一个词就超过长度了，即可凑成一行</span></span><br><span class="line">                ans.<span class="built_in">push_back</span>(<span class="built_in">fillWords</span>(words, bg, i, maxWidth, i + <span class="number">1</span> == words.<span class="built_in">size</span>()));</span><br><span class="line">                bg = i + <span class="number">1</span>;</span><br><span class="line">                cnt = <span class="number">0</span>;<span class="comment">//note</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>The master has failed more times than the beginner has tried.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/leetcode/"># leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/03/69-x-%E7%9A%84%E5%B9%B3%E6%96%B9%E6%A0%B9/">69.x 的平方根</a>
+            
+            
+            <a class="next" rel="next" href="/2021/08/03/65-%E6%9C%89%E6%95%88%E6%95%B0%E5%AD%97/">65.有效数字</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/pinglchen" target="_blank">Chic-Chen</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

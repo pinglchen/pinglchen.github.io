@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen">
+
+
+    <meta name="subtitle" content="nothing">
+
+
+    <meta name="description" content="No one is coming.">
+
+
+    <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+
+
+<title>22.括号生成 | Chen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">CHEN&#39;S BLOG</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">CHEN&#39;S BLOG</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">22.括号生成</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 3, 2021&nbsp;&nbsp;17:34:30</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses">https://leetcode-cn.com/problems/generate-parentheses</a> </p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>数字 <code>n</code>  代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p>
+<p> <span id="more"></span></p>
+<p> <strong>示例 1：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：n = 3</span><br><span class="line">输出：[&quot;((()))&quot;,&quot;(()())&quot;,&quot;(())()&quot;,&quot;()(())&quot;,&quot;()()()&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 2：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：n = 1</span><br><span class="line">输出：[&quot;()&quot;]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p> <strong>提示：</strong> </p>
+<ul>
+<li><code>1 &lt;= n &lt;= 8</code> </li>
+</ul>
+<p><strong>标签</strong><br><code>字符串</code> <code>动态规划</code> <code>回溯</code> </p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p><strong>（参考）</strong><br>当我们清楚所有 i&lt;n 时括号的可能生成排列后，对与 i=n 的情况，我们考虑整个括号排列中最左边的括号。<br>它一定是一个左括号，那么它可以和它对应的右括号组成一组完整的括号 “( )”，我们认为这一组是相比 n-1 增加进来的括号。</p>
+<p>那么，剩下 n-1 组括号有可能在哪呢？</p>
+<p>【这里是重点，请着重理解】</p>
+<p>剩下的括号要么在这一组新增的括号内部，要么在这一组新增括号的外部（右侧）。</p>
+<p>既然知道了 i&lt;n 的情况，那我们就可以对所有情况进行遍历：</p>
+<p>“(“ + 【i=p时所有括号的排列组合】 + “)” + 【i=q时所有括号的排列组合】</p>
+<p>其中 p + q = n-1，且 p q 均为非负整数。</p>
+<p>事实上，当上述 p 从 0 取到 n-1，q 从 n-1 取到 0 后，所有情况就遍历完了。</p>
+<p>注：上述遍历是没有重复情况出现的，即当 (p1,q1)≠(p2,q2) 时，按上述方式取的括号组合一定不同。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        vector&lt;string&gt; ans[n+<span class="number">1</span>]; <span class="comment">//not ans[n] </span></span><br><span class="line">        string temp=<span class="string">&quot;()&quot;</span>;</span><br><span class="line">        ans[<span class="number">1</span>].<span class="built_in">push_back</span>(temp);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> p=<span class="number">0</span>;p&lt;i;p++)&#123; <span class="comment">//not p&lt;n!!!</span></span><br><span class="line">                <span class="keyword">int</span> q=i<span class="number">-1</span>-p;</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span>(p)&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;ans[p].<span class="built_in">size</span>();k++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(!q)&#123;</span><br><span class="line">                        temp.<span class="built_in">clear</span>();</span><br><span class="line">                        temp+=<span class="string">&#x27;(&#x27;</span>;</span><br><span class="line">                        temp+=ans[p][k];</span><br><span class="line">                        temp+=<span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">                        ans[i].<span class="built_in">push_back</span>(temp);</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>;l&lt;ans[q].<span class="built_in">size</span>();l++)&#123;</span><br><span class="line">                        temp.<span class="built_in">clear</span>();</span><br><span class="line">                        temp+=<span class="string">&#x27;(&#x27;</span>;</span><br><span class="line">                        temp+=ans[p][k];</span><br><span class="line">                        temp+=<span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">                        temp+=ans[q][l];</span><br><span class="line">                        ans[i].<span class="built_in">push_back</span>(temp);</span><br><span class="line">                        </span><br><span class="line">                        <span class="comment">//while(num--) temp.pop_back();</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">0</span>;l&lt;ans[q].<span class="built_in">size</span>();l++)&#123;</span><br><span class="line">                        temp.<span class="built_in">clear</span>();</span><br><span class="line">                        temp+=<span class="string">&quot;()&quot;</span>;</span><br><span class="line">                        temp+=ans[q][l];</span><br><span class="line">                        ans[i].<span class="built_in">push_back</span>(temp);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>对照</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function">vector&lt;string&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">		<span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> &#123; <span class="string">&quot;()&quot;</span> &#125;;</span><br><span class="line">		vector&lt;vector&lt;string&gt;&gt; <span class="built_in">dp</span>(n+<span class="number">1</span>);</span><br><span class="line">		dp[<span class="number">0</span>] = &#123; <span class="string">&quot;&quot;</span> &#125;;</span><br><span class="line">		dp[<span class="number">1</span>] = &#123; <span class="string">&quot;()&quot;</span> &#125;;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;i; j++) &#123;</span><br><span class="line">				<span class="keyword">for</span> (string p : dp[j])</span><br><span class="line">					<span class="keyword">for</span> (string q : dp[i - j - <span class="number">1</span>]) &#123;</span><br><span class="line">						string str = <span class="string">&quot;(&quot;</span> + p + <span class="string">&quot;)&quot;</span> + q;</span><br><span class="line">						dp[i].<span class="built_in">push_back</span>(str);</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> dp[n];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>The master has failed more times than the beginner has tried.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/leetcode/"># leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/03/23-%E5%90%88%E5%B9%B6K%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8/">23.合并K个升序链表</a>
+            
+            
+            <a class="next" rel="next" href="/2021/07/03/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/">21.合并两个有序链表</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/pinglchen" target="_blank">Chic-Chen</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

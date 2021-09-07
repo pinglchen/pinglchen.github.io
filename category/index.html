@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen">
+
+
+    <meta name="subtitle" content="nothing">
+
+
+    <meta name="description" content="No one is coming.">
+
+
+    <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+
+
+<title>Research | Chen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">CHEN&#39;S BLOG</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">CHEN&#39;S BLOG</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    <article class="post-wrap page">
+        
+        <h2 class="post-title">Research</h2>
+        
+        <section class="post-content">
+            <h2 id="High-Resolution-Numerical-Aerodynamic-Noise-Simulation-of-Multi-rotor-Drone"><a href="#High-Resolution-Numerical-Aerodynamic-Noise-Simulation-of-Multi-rotor-Drone" class="headerlink" title="High Resolution Numerical Aerodynamic Noise Simulation of Multi-rotor Drone"></a>High Resolution Numerical Aerodynamic Noise Simulation of Multi-rotor Drone</h2><h3 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h3><p>Drones have made one of the biggest shifts in today’s industry, and their usage is increasing day by day. One of the flaws we can say that today’s drones have is their buzzing noise, which can sometimes get on nerves. We aim at simulating the broad-band noise associated with both the propeller and its wake. An unsteady Reynolds Averaged Navier-Stokes simulation, combined with the Ffowcs Williams-Hawkings solver, is used to simulate the noise generated by a high speed 2- bladed propeller. We focus on understanding the physics of the aerodynamic noises and how it propagates to the near- and the far- acoustic fields, which is analyzed by computing the dilatation field, the light hill-stress terms, and each term in the integrand of FWH integral solution of the far field.</p>
+<h3 id="Mathematical-Models"><a href="#Mathematical-Models" class="headerlink" title="Mathematical Models"></a>Mathematical Models</h3><p>The unsteady Reynolds-averaged Navier–Stokes (uRANS)<br>equations are used herein for the flow simulation of drone propellers:</p>
+<img src="p7.png">
+
+<p>In the uRANS computation, the Reynolds stress term is modeled using a differential equation that approximates the effect of the turbulence length, time-scale and the shear stress transport. SST k −ω model is used as a turbulence closure model. Unlike the k − e model, the k − ω model has a disadvantage that the value of ω in the free-stream is overly sensitive.<br>However, the near-wall turbulence of the k−ω model is more accurately resolved than that of the k − e model. The SST k − ω model combines the advantages of the k − ω and the k− e models, which can achieve high accuracy in the analysis of the propeller. In this study, OpenFOAM was used for 3D uRANS computations for drone propellers.<br>The aeroacoustic computation was performed with the Farassat 1A formulation of the Ffowcs Williams-Hawkings equation using impermeable surfaces. This equation calculates the noise generated due to three mechanisms: 1) thickness noise generated by the displacement of the air due to the geometry of the blades; 2) loading noise generated by the forces exerted on the air by the propeller; and 3) quadrupole noise, which describes noise sources away from the surface of the blade such as vortex noise. The total noise is described by the addition of the thickness, loading, and quadrupole terms. The influence of quadrupole noise is generally small for subsonic propellers.</p>
+<p>Ffowcs Williams-Hawkings equation<br>The thickness, 𝑝𝑇, and loading terms, 𝑝𝐿, of the Farassat 1A formulation are shown in Eq. 1 and Eq. 2, respectively.</p>
+<img src="p6.png">
+<img src="p5.png">
+
+<h3 id="Simulation-resultsSimulation-results"><a href="#Simulation-resultsSimulation-results" class="headerlink" title="Simulation resultsSimulation results"></a>Simulation resultsSimulation results</h3><p>The simulations were run in parallel on Tianhe 2A supercomputer at the National Supercomputer Center at Guangzhou with 960 CPU cores. Some of the simulation results are followed.<br><img src="pel.png"></p>
+<img src="p1.png">
+<img src="p3.png">
+<img src="p2.png">
+<img src="p4.png">
+
+
+
+
+<h2 id="Pollution-Transport-and-Source-Tracking-in-Urban-Areas"><a href="#Pollution-Transport-and-Source-Tracking-in-Urban-Areas" class="headerlink" title="Pollution Transport and Source Tracking in Urban Areas"></a>Pollution Transport and Source Tracking in Urban Areas</h2><p>Transport and source detection of urban pollution are very important research topics.They play essential roles in,for examples, forecasting the concentration of urban pollutants and the design of urban industry parks. With the rapid development of supercomputing technology,numerical simulation is becoming a useful tool for these problems due to its promising advantages:fast,cheap,and high flexibility.Based on the advanced technology of supercomputing,we investigate fast solution algorithms and software for the prediction and back tracking of urban pollutions.<br><img src="shenzhencity.png"></p>
+
+        </section>
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/pinglchen" target="_blank">Chic-Chen</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

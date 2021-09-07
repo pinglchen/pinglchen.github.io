@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen">
+
+
+    <meta name="subtitle" content="nothing">
+
+
+    <meta name="description" content="No one is coming.">
+
+
+    <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+
+
+<title>87.扰乱字符串 | Chen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">CHEN&#39;S BLOG</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">CHEN&#39;S BLOG</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">87.扰乱字符串</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 3, 2021&nbsp;&nbsp;22:32:59</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/scramble-string">https://leetcode-cn.com/problems/scramble-string</a> </p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>使用下面描述的算法可以扰乱字符串 <code>s</code> 得到字符串 <code>t</code> ：</p>
+<ul>
+<li>如果字符串的长度为 1 ，算法停止</li>
+<li>如果字符串的长度 &gt; 1 ，执行下述步骤：</li>
+<li>在一个随机下标处将字符串分割成两个非空的子字符串。即，如果已知字符串 <code>s</code> ，则可以将其分成两个子字符串 <code>x</code> 和 <code>y</code> ，且满足 <code>s = x + y</code> 。</li>
+<li> <strong>随机</strong> 决定是要「交换两个子字符串」还是要「保持这两个子字符串的顺序不变」。即，在执行这一步骤之后， <code>s</code> 可能是 <code>s = x + y</code> 或者 <code>s = y + x</code> 。</li>
+<li>在 <code>x</code> 和 <code>y</code> 这两个子字符串上继续从步骤 1 开始递归执行此算法。</li>
+</ul>
+<p>给你两个 <strong>长度相等</strong> 的字符串 <code>s1</code> 和  <code>s2</code> ，判断  <code>s2</code> * * 是否是  <code>s1</code> * * 的扰乱字符串。如果是，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<span id="more"></span> 
+
+<p> <strong>示例 1：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：s1 = &quot;great&quot;, s2 = &quot;rgeat&quot;</span><br><span class="line">输出：true</span><br><span class="line">解释：s1 上可能发生的一种情形是：</span><br><span class="line">&quot;great&quot; --&gt; &quot;gr/eat&quot; // 在一个随机下标处分割得到两个子字符串</span><br><span class="line">&quot;gr/eat&quot; --&gt; &quot;gr/eat&quot; // 随机决定：「保持这两个子字符串的顺序不变」</span><br><span class="line">&quot;gr/eat&quot; --&gt; &quot;g/r / e/at&quot; // 在子字符串上递归执行此算法。两个子字符串分别在随机下标处进行一轮分割</span><br><span class="line">&quot;g/r / e/at&quot; --&gt; &quot;r/g / e/at&quot; // 随机决定：第一组「交换两个子字符串」，第二组「保持这两个子字符串的顺序不变」</span><br><span class="line">&quot;r/g / e/at&quot; --&gt; &quot;r/g / e/ a/t&quot; // 继续递归执行此算法，将 &quot;at&quot; 分割得到 &quot;a/t&quot;</span><br><span class="line">&quot;r/g / e/ a/t&quot; --&gt; &quot;r/g / e/ a/t&quot; // 随机决定：「保持这两个子字符串的顺序不变」</span><br><span class="line">算法终止，结果字符串和 s2 相同，都是 &quot;rgeat&quot;</span><br><span class="line">这是一种能够扰乱 s1 得到 s2 的情形，可以认为 s2 是 s1 的扰乱字符串，返回 true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 2：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：s1 = &quot;abcde&quot;, s2 = &quot;caebd&quot;</span><br><span class="line">输出：false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 3：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：s1 = &quot;a&quot;, s2 = &quot;a&quot;</span><br><span class="line">输出：true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p> <strong>提示：</strong> </p>
+<ul>
+<li> <code>s1.length == s2.length</code> </li>
+<li> <code>1 &lt;= s1.length &lt;= 30</code> </li>
+<li><code>s1</code> 和 <code>s2</code> 由小写英文字母组成</li>
+</ul>
+<p><strong>标签</strong><br><code>字符串</code> <code>动态规划</code> </p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><blockquote>
+<p>分治算法中常用到方法：存储中间结果，以免重复计算。</p>
+</blockquote>
+<img src="https://assets.leetcode-cn.com/solution-static/87/1.png">
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 记忆化搜索存储状态的数组</span></span><br><span class="line">    <span class="comment">// -1 表示 false，1 表示 true，0 表示未计算</span></span><br><span class="line">    <span class="keyword">int</span> memo[<span class="number">30</span>][<span class="number">30</span>][<span class="number">31</span>];</span><br><span class="line">    string s1, s2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkIfSimilar</span><span class="params">(<span class="keyword">int</span> i1, <span class="keyword">int</span> i2, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; freq;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = i1; i &lt; i1 + length; ++i) &#123;</span><br><span class="line">            ++freq[s1[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = i2; i &lt; i2 + length; ++i) &#123;</span><br><span class="line">            --freq[s2[i]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*if (any_of(freq.begin(), freq.end(), [](const auto&amp; entry) &#123;return entry.second != 0;&#125;)) &#123;</span></span><br><span class="line"><span class="comment">            return false;</span></span><br><span class="line"><span class="comment">        &#125;*/</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;p:freq)&#123;</span><br><span class="line">            <span class="keyword">if</span>(p.second) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 第一个字符串从 i1 开始，第二个字符串从 i2 开始，子串的长度为 length，是否和谐</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i1, <span class="keyword">int</span> i2, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (memo[i1][i2][length]) &#123;</span><br><span class="line">            <span class="keyword">return</span> memo[i1][i2][length] == <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断两个子串是否相等</span></span><br><span class="line">        <span class="keyword">if</span> (s1.<span class="built_in">substr</span>(i1, length) == s2.<span class="built_in">substr</span>(i2, length)) &#123;</span><br><span class="line">            memo[i1][i2][length] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否存在字符 c 在两个子串中出现的次数不同</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="built_in">checkIfSimilar</span>(i1, i2, length)) &#123;</span><br><span class="line">            memo[i1][i2][length] = <span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 枚举分割位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; length; ++i) &#123;</span><br><span class="line">            <span class="comment">// 不交换的情况</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">dfs</span>(i1, i2, i) &amp;&amp; <span class="built_in">dfs</span>(i1 + i, i2 + i, length - i)) &#123;</span><br><span class="line">                memo[i1][i2][length] = <span class="number">1</span>;<span class="comment">//</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 交换的情况</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">dfs</span>(i1, i2 + length - i, i) &amp;&amp; <span class="built_in">dfs</span>(i1 + i, i2, length - i)) &#123;</span><br><span class="line">                memo[i1][i2][length] = <span class="number">1</span>;<span class="comment">//</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        memo[i1][i2][length] = <span class="number">-1</span>;<span class="comment">//</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isScramble</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">memset</span>(memo, <span class="number">0</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(memo));<span class="comment">//note</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;s1 = s1; <span class="comment">//thi指针</span></span><br><span class="line">        <span class="keyword">this</span>-&gt;s2 = s2;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(<span class="number">0</span>, <span class="number">0</span>, s1.<span class="built_in">size</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
+<li><p><strong>时间复杂度</strong>：<code>O(n^4)</code>，其中 <code>n</code> 是给定的原始字符串的长度。动态规划中的状态 <code>f(i1, i2, length)</code>有 <code>3</code> 个维度，对于每一个状态，我们需要 <code>O(n)</code> 枚举分割位置，因此总时间复杂度为 <code>O(n^4)</code>。</p>
+</li>
+<li><p>空间复杂度：<code>O(n^3)</code>，即为存储所有动态规划状态需要的空间。</p>
+</li>
+</ul>
+<hr>
+<h3 id="超出时间限制"><a href="#超出时间限制" class="headerlink" title="超出时间限制"></a>超出时间限制</h3><p>解题前分析所要实现算法的大致时间复杂度。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(unordered_map&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; &amp;mp1,unordered_map&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; &amp;mp2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; p:mp1)&#123;</span><br><span class="line">            <span class="keyword">if</span>(mp2.<span class="built_in">find</span>(p.first)==mp2.<span class="built_in">end</span>()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(mp2[p.first]!=p.second) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isTure</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> l0,<span class="keyword">int</span> r0,string &amp;s1,string &amp;s2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(l==r&amp;&amp;s1[l]==s2[l0]) <span class="keyword">return</span> <span class="literal">true</span>;<span class="comment">//if(l-r&lt;=2)不对</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=l+<span class="number">1</span>;i&lt;=r;i++)&#123;</span><br><span class="line">            unordered_map&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt; mp,mp1,mp2;</span><br><span class="line">            <span class="keyword">int</span> x=l0,y=r0;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=l;j&lt;i;j++)&#123;</span><br><span class="line">                mp[s1[j]]++;</span><br><span class="line">                mp1[s2[x++]]++;</span><br><span class="line">                mp2[s2[y--]]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">check</span>(mp,mp1)&amp;&amp;<span class="built_in">isTure</span>(l,i<span class="number">-1</span>,l0,l0+i<span class="number">-1</span>-l,s1,s2)&amp;&amp;<span class="built_in">isTure</span>(i,r,l0+i-l,r0,s1,s2))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">check</span>(mp,mp2)&amp;&amp;<span class="built_in">isTure</span>(l,i<span class="number">-1</span>,r0-(i<span class="number">-1</span>-l),r0,s1,s2)&amp;&amp;<span class="built_in">isTure</span>(i,r,l0,r0-(i<span class="number">-1</span>-l)<span class="number">-1</span>,s1,s2))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isScramble</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=s1.<span class="built_in">length</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isTure</span>(<span class="number">0</span>,n<span class="number">-1</span>,<span class="number">0</span>,n<span class="number">-1</span>,s1,s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+</blockquote>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>The master has failed more times than the beginner has tried.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/leetcode/"># leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/03/88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84/">88.合并两个有序数组</a>
+            
+            
+            <a class="next" rel="next" href="/2021/08/03/86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8/">86.分隔链表</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/pinglchen" target="_blank">Chic-Chen</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Chen">
+
+
+    <meta name="subtitle" content="nothing">
+
+
+    <meta name="description" content="No one is coming.">
+
+
+    <meta name="keywords" content="前端,js,jquery,javascript,html5,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+
+
+<title>97.交错字符串 | Chen&#39;s Blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">CHEN&#39;S BLOG</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">CHEN&#39;S BLOG</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">POSTS</a>
+                
+                    <a class="menu-item" href="/category">RESEARCH</a>
+                
+                    <a class="menu-item" href="/tag">TAGS</a>
+                
+                    <a class="menu-item" href="/about">ABOUT</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">97.交错字符串</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 3, 2021&nbsp;&nbsp;22:42:36</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/interleaving-string">https://leetcode-cn.com/problems/interleaving-string</a> </p>
+<h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>给定三个字符串  <code>s1</code> 、 <code>s2</code> 、 <code>s3</code> ，请你帮忙验证  <code>s3</code>  是否是由  <code>s1</code>  和  <code>s2</code>  <strong>交错</strong> 组成的。</p>
+<p>两个字符串 <code>s</code> 和 <code>t</code> <strong>交错</strong> 的定义与过程如下，其中每个字符串都会被分割成若干 <strong>非空</strong> 子字符串：</p>
+<ul>
+<li> <code>s = s&lt;sub&gt;1&lt;/sub&gt; + s&lt;sub&gt;2&lt;/sub&gt; + ... + s&lt;sub&gt;n&lt;/sub&gt;</code> </li>
+<li> <code>t = t&lt;sub&gt;1&lt;/sub&gt; + t&lt;sub&gt;2&lt;/sub&gt; + ... + t&lt;sub&gt;m&lt;/sub&gt;</code> </li>
+<li> <code>|n - m| &lt;= 1</code> </li>
+<li> <strong>交错</strong> 是 <code>s&lt;sub&gt;1&lt;/sub&gt; + t&lt;sub&gt;1&lt;/sub&gt; + s&lt;sub&gt;2&lt;/sub&gt; + t&lt;sub&gt;2&lt;/sub&gt; + s&lt;sub&gt;3&lt;/sub&gt; + t&lt;sub&gt;3&lt;/sub&gt; + ...</code> 或者 <code>t&lt;sub&gt;1&lt;/sub&gt; + s&lt;sub&gt;1&lt;/sub&gt; + t&lt;sub&gt;2&lt;/sub&gt; + s&lt;sub&gt;2&lt;/sub&gt; + t&lt;sub&gt;3&lt;/sub&gt; + s&lt;sub&gt;3&lt;/sub&gt; + ...</code> </li>
+</ul>
+<p> <strong>提示：</strong> <code>a + b</code> 意味着字符串 <code>a</code> 和 <code>b</code> 连接。</p>
+<span id="more"></span> 
+
+<p> <strong>示例 1：</strong><br><img alt="" src="https://assets.leetcode.com/uploads/2020/09/02/interleave.jpg" style="width: 561px; height: 203px;" /></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbcbcac&quot;</span><br><span class="line">输出：true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 2：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：s1 = &quot;aabcc&quot;, s2 = &quot;dbbca&quot;, s3 = &quot;aadbbbaccc&quot;</span><br><span class="line">输出：false</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> <strong>示例 3：</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">输入：s1 = &quot;&quot;, s2 = &quot;&quot;, s3 = &quot;&quot;</span><br><span class="line">输出：true</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p> </p>
+<p> <strong>提示：</strong> </p>
+<ul>
+<li> <code>0 &lt;= s1.length, s2.length &lt;= 100</code> </li>
+<li> <code>0 &lt;= s3.length &lt;= 200</code> </li>
+<li><code>s1</code> 、 <code>s2</code> 、和 <code>s3</code> 都由小写英文字母组成</li>
+</ul>
+<p><strong>标签</strong><br><code>字符串</code> <code>动态规划</code> </p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><blockquote>
+<p>思考点：s1、s2都可能和s3的多个字符匹配，而此时动态规划并不需要考虑那么多，只需逐一减小问题规模</p>
+</blockquote>
+<p>递归</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> m,<span class="keyword">int</span> n,string&amp; s1,string&amp; s2,string &amp;s3,vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; &amp;a)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[m][n]) <span class="keyword">return</span> a[m][n]==<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(!m&amp;&amp;!n) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(m&amp;&amp;n)&#123;</span><br><span class="line">            <span class="keyword">bool</span> flag=(s1[m<span class="number">-1</span>]==s3[m+n<span class="number">-1</span>]&amp;&amp;<span class="built_in">f</span>(m<span class="number">-1</span>,n,s1,s2,s3,a))||(s2[n<span class="number">-1</span>]==s3[m+n<span class="number">-1</span>]&amp;&amp;<span class="built_in">f</span>(m,n<span class="number">-1</span>,s1,s2,s3,a));</span><br><span class="line">            <span class="keyword">if</span>(flag) a[m][n]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> a[m][n]=<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125; </span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(n)&#123;</span><br><span class="line">            <span class="keyword">bool</span> flag=s2.<span class="built_in">substr</span>(<span class="number">0</span>,n)==s3.<span class="built_in">substr</span>(<span class="number">0</span>,n);</span><br><span class="line">            <span class="keyword">if</span>(flag) a[m][n]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> a[m][n]=<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">bool</span> flag=s1.<span class="built_in">substr</span>(<span class="number">0</span>,m)==s3.<span class="built_in">substr</span>(<span class="number">0</span>,m);</span><br><span class="line">            <span class="keyword">if</span>(flag) a[m][n]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> a[m][n]=<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">return</span> flag;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isInterleave</span><span class="params">(string s1, string s2, string s3)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m=s1.<span class="built_in">size</span>(),n=s2.<span class="built_in">size</span>(),s=s3.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">a</span>(m+<span class="number">1</span>,vector&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>,<span class="number">0</span>));<span class="comment">//not:m n</span></span><br><span class="line">        <span class="comment">//不加此辅助数组会超时</span></span><br><span class="line">        a[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(m+n!=s) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">f</span>(m,n,s1,s2,s3,a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>递推</p>
+<p>动态规划转移方程：<code>f(i,j) = [f(i−1,j)and s1(i−1)=s3(p)] or [f(i,j−1) and s2(j−1)=s3(p)]</code><br>其中 <code>p = i + j - 1</code>。边界条件为 <code>f(0, 0) = True</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isInterleave</span><span class="params">(string s1, string s2, string s3)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> f = vector &lt; vector &lt;<span class="keyword">int</span>&gt; &gt; (s1.<span class="built_in">size</span>() + <span class="number">1</span>, vector &lt;<span class="keyword">int</span>&gt; (s2.<span class="built_in">size</span>() + <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">        <span class="comment">//note</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> n = s1.<span class="built_in">size</span>(), m = s2.<span class="built_in">size</span>(), t = s3.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (n + m != t) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">                <span class="keyword">int</span> p = i + j - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    f[i][j] |= (f[i - <span class="number">1</span>][j] &amp;&amp; s1[i - <span class="number">1</span>] == s3[p]);<span class="comment">// |=</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    f[i][j] |= (f[i][j - <span class="number">1</span>] &amp;&amp; s2[j - <span class="number">1</span>] == s3[p]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">//注意上面两个判断所包括的情况,以及与下面的不同之处</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> f[n][m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>实现的时间复杂度和空间复杂度都是 O(nm)。</p>
+</blockquote>
+<p>可以使用滚动数组优化空间复杂度。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isInterleave</span><span class="params">(string s1, string s2, string s3)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> f = vector &lt;<span class="keyword">int</span>&gt; (s2.<span class="built_in">size</span>() + <span class="number">1</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> n = s1.<span class="built_in">size</span>(), m = s2.<span class="built_in">size</span>(), t = s3.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (n + m != t) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        f[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">                <span class="keyword">int</span> p = i + j - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123; <span class="comment">//隐含的是 f[i][j]</span></span><br><span class="line">                    f[j] &amp;= (s1[i - <span class="number">1</span>] == s3[p]);<span class="comment">//note:&amp;</span></span><br><span class="line">                    <span class="comment">//相当于:f[i][j]=f[i-1][j]&amp;&amp;(s1[i - 1] == s3[p]) ！ 且不能是｜= </span></span><br><span class="line">                    <span class="comment">//与不是滚动数组区别的原因是：非滚动数组每个f[m][n]处都是false，</span></span><br><span class="line">                    <span class="comment">//而滚动数组每处值代表之前的值，可能为true</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (j &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    f[j] |= (f[j - <span class="number">1</span>] &amp;&amp; s2[j - <span class="number">1</span>] == s3[p]);<span class="comment">//note:|</span></span><br><span class="line">                    <span class="comment">//相当于:f[i][j]｜=f[i][j-1]&amp;&amp;(s1[i - 1] == s3[p])</span></span><br><span class="line">                    <span class="comment">//此处可以用|=的原因是：经过上一个判断，此时f[j]已更新，</span></span><br><span class="line">                    <span class="comment">//如果为true，则表明可以由纵向递推</span></span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> f[m];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>复杂度分析</p>
+<ul>
+<li>时间复杂度：<code>O(nm)</code>，两重循环的时间代价为 <code>O(nm)</code>。</li>
+<li>空间复杂度：<code>O(m)</code>，即 <code>s2</code>的长度。</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>The master has failed more times than the beginner has tried.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/leetcode/"># leetcode</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/08/03/98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">98.验证二叉搜索树</a>
+            
+            
+            <a class="next" rel="next" href="/2021/08/03/96-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/">96.不同的二叉搜索树</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/pinglchen" target="_blank">Chic-Chen</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
